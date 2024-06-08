@@ -1,0 +1,339 @@
+index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Food Recipe - Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Online Food Recipe</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Veg</a></li>
+                <li><a href="#">Non-Veg</a></li>
+                <li><a href="#">Beverage</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Login/Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="login-container">
+            <button class="create-account" id="create-account-btn">Create Account</button>
+            <p>OR</p>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="email"><i class="fas fa-user"></i> Email</label>
+                    <input type="email" id="email" name="email" placeholder="example@gmail.com">
+                </div>
+                <div class="form-group">
+                    <label for="password"><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="password" name="password" placeholder="Password">
+                </div>
+                <a href="#" class="forgot-password">Forget Password</a>
+                <button type="submit">Login</button>
+            </form>
+
+            <!-- Create Account Form -->
+            <div class="create-account-form" id="create-account-form">
+                <h2>Create Account</h2>
+                <form id="create-account-form">
+                    <div class="form-group">
+                        <label for="name"><i class="fas fa-user"></i> Name</label>
+                        <input type="text" id="name" name="name" placeholder="Full Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                        <input type="email" id="email" name="email" placeholder="example@gmail.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="password"><i class="fas fa-lock"></i> Password</label>
+                        <input type="password" id="password" name="password" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password"><i class="fas fa-lock"></i> Confirm Password</label>
+                        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password">
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+</main>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+
+style.css
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #003366;
+    color: #fff;
+    padding: 1em;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav li {
+    margin: 0 1em;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+.login-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 350px;
+}
+
+.create-account {
+    background-color: #ffc107; /* Yellow */
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.create-account:hover {
+    background-color: #e0a800;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.forgot-password {
+    display: block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #007bff; /* Blue */
+    font-size: 14px;
+}
+
+button[type="submit"] {
+    background-color: #007bff; /* Blue */
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .login-container {
+        width: 90%;
+    }
+}
+/* Add the following styles to your existing CSS file */
+
+.create-account-form {
+    display: none;
+}
+
+.create-account-form.show {
+    display: block;
+}
+
+/* Add the following styles to your existing CSS file */
+
+.register-container {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+button[type="submit"] {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #3e8e41;
+}
+
+
+
+
+
+script.js
+const loginForm = document.getElementById('login-form');
+const createAccountForm = document.getElementById('create-account-form');
+const createAccountBtn = document.getElementById('create-account-btn');
+
+
+createAccountBtn.addEventListener('click', () => {
+    // Redirect to the registration page
+    window.location.href = 'register.html';
+});
+
+createAccountBtn.addEventListener('click', () => {
+    loginForm.style.display = 'none';
+    createAccountForm.classList.add('show');
+});
+
+createAccountForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirm-password').value;
+
+    // Basic validation (add more as needed)
+    if (name === '' || email === '' || password === '' || confirmPassword === '') {
+        alert('Please fill in all fields.');
+        return;
+    }
+
+    if (password !== confirmPassword) {
+        alert('Passwords do not match.');
+        return;
+    }
+
+    // Example: Submit to server (replace with your actual logic)
+    fetch('/api/create-account', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, password }),
+    })
+    .then(response => {
+        if (response.ok) {
+            // Successful account creation
+            alert('Account created successfully!');
+            //
+
+
+            const registerForm = document.getElementById('register-form');
+
+registerForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const surname = document.getElementById('surname').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirm-password').value;
+    const terms = document.getElementById('terms').checked;
+
+    // Basic validation (add more as needed)
+    if (name === '' || surname === '' || email === '' || password === '' || confirmPassword === '') {
+        alert('Please fill in all fields.');
+        return;
+    }
+
+    if (password !== confirmPassword) {
+        alert('Passwords do not match.');
+        return;
+    }
+
+    if (!terms) {
+        alert('Please agree to the terms and conditions.');
+        return;
+    }
+
+    // Example: Submit to server (replace with your actual logic)
+    fetch('/api/register', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, surname, email, password }),
+    })
+    .then(response => {
+        if (response.ok) {
+            // Successful registration
+            alert('Registration successful!');
+            // Redirect to the next page
+            window.location.href = 'login.html';
+        } else {
+            alert('Registration failed. Please try again.');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again later.');
+    });
+
