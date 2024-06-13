@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gujarat Recipes</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f1f1f1;
+            padding: 20px;
+            margin: 0;
+        }
+        header {
+            background-color: #0f0f0f;
+            color: rgb(223, 192, 50);
+            padding: 15px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 60px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .state, .recipe {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .state h3, .recipe h3 {
+            margin: 0;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            width: auto;
+            margin-left: auto;
+            margin-right: 20%;
+            border-radius: 5px;
+        }
+
+        .button:hover {
+            background-color: #3e8e41;
+        }
+
+        .plus-icon {
+            margin-left: 10px;
+            font-size: 16px;
+        }
+
+        footer {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -2px 4px 0 rgba(0,0,0,0.1);
+        }
+
+        .add-new {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            display: flex;
+            width: fit-content;
+            margin-left: 0px;
+            margin-right: 10px;
+            float: right;
+            margin-right: 2%;
+        }
+
+        .add-new:hover {
+            background-color: #3e8e41;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 20px;
+            margin-top: 20px;
+        }
+
+        .grid-item {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
+        }
+
+        .heading {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .content {
+            margin-top: 10px;
+        }
+
+        .content ul, .content ol {
+            margin-top: 0;
+            padding-left: 20px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+        }
+
+        .form-actions {
+            text-align: right;
+        }
+    </style>
+</head>
+<body onload="loadRecipes(); checkLoginStatus()">
+    <header>
+        <h1>Flavors of the coastal breeze</h1>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="#" onclick="navigate('vegetarian')">Vegetarian</a></li>
+                <li><a href="#" onclick="navigate('non-vegetarian')">Non-Vegetarian</a></li>
+                <li><a href="#" onclick="navigate('beverages')">Beverages</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="#" id="loginLink" onclick="openLoginModal()">Login/Signup</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="button-container">
+        <button class="add-new" onclick="openAddRecipeModal()">Add New <span class="plus-icon">+</span></button>
+    </div>
+    <div class="container">
+        <h2>Gujarat Recipes</h2>
+        <div id="recipeList">
+            <div class="recipe">
+                <h3>Dhokla</h3>
+                <button class="button" onclick="window.location.href='dhokla_recipe.html'">Click Here</button>
+            </div>
+            <div class="recipe">
+                <h3>Handvo</h3>
+                <button class="button" onclick="window.location.href='handvo_recipe.html'">Click Here</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="addRecipeModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAddRecipeModal()">&times;</span>
+            <h2>Add New Recipe</h2>
+            <form id="addRecipeForm">
+                <div class="form-group">
+                    <label for="recipeName">Recipe Name:</label>
+                    <input type="text" id="recipeName" name="recipeName" required>
+                </div>
+                <div class="form-group">
+                    <label for="imageUrl">Image URL:</label>
+                    <input type="text" id="imageUrl" name="imageUrl" required>
+                </div>
+                <div class="form-group">
+                    <label for="videoUrl">YouTube Video URL:</label>
+                    <input type="text" id="videoUrl" name="videoUrl" required>
+                </div>
+                <div class="form-group">
+                    <label for="ingredients">Ingredients:</label>
+                    <textarea id="ingredients" name="ingredients" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="preparationSteps">Preparation Steps:</label>
+                    <textarea id="preparationSteps" name="preparationSteps" rows="4" required></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="button">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openAddRecipeModal() {
+            document.getElementById('addRecipeModal').style.display = 'block';
+        }
+
+        function closeAddRecipeModal() {
+            document.getElementById('addRecipeModal').style.display = 'none';
+        }
+
+        document.getElementById('addRecipeForm').onsubmit = function(event) {
+            event.preventDefault();
+
+            var recipeName = document.getElementById('recipeName').value;
+            var imageUrl = document.getElementById('imageUrl').value;
+            var videoUrl = document.getElementById('videoUrl').value;
+            var ingredients = document.getElementById('ingredients').value.split('\n');
+            var preparationSteps = document.getElementById('preparationSteps').value.split('\n');
+
+            var recipe = {
+                name: recipeName,
+                image: imageUrl,
+                video: videoUrl,
+                ingredients: ingredients,
+                steps: preparationSteps
+            };
+
+            saveRecipe(recipe);
+            addRecipeToPage(recipe);
+
+            closeAddRecipeModal();
+            document.getElementById('addRecipeForm').reset();
+        }
+
+        function saveRecipe(recipe) {
+            var recipes = JSON.parse(localStorage.getItem('recipes')) || [];
+            recipes.push(recipe);
+            localStorage.setItem('recipes', JSON.stringify(recipes));
+        }
+
+        function loadRecipes() {
+            var recipes = JSON.parse(localStorage.getItem('recipes')) || [];
+            recipes.forEach(addRecipeToPage);
+        }
+
+        function addRecipeToPage(recipe) {
+            var recipeList = document.getElementById('recipeList');
+            var newRecipe = document.createElement('div');
+            newRecipe.className = 'recipe';
+            newRecipe.innerHTML = `
+                <h3>${recipe.name}</h3>
+                <button class="button" onclick="openRecipeModal('${recipe.name}', '${recipe.image}', '${recipe.video}', '${recipe.ingredients.join('\n')}', '${recipe.steps.join('\n')}')">Click Here</button>
+            `;
+            recipeList.appendChild(newRecipe);
+        }
+
+        function openRecipeModal(name, image, video, ingredients, steps) {
+            var recipeModal = document.createElement('div');
+            recipeModal.className = 'modal';
+            recipeModal.style.display = 'block';
+            recipeModal.innerHTML = `
+                <div class="modal-content">
+                    <span class="close" onclick="this.parentElement.parentElement.style.display='none'">&times;</span>
+                    <h2>${name}</h2>
+                    <div class="grid-container">
+                        <div class="grid-item image-container">
+                            <div class="heading">Image</div>
+                            <img src="${image}" alt="${name}">
+                        </div>
+                        <div class="grid-item video-container">
+                            <div class="heading">YouTube Link</div>
+                            <iframe src="${video}" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                        <div class="grid-item">
+                            <div class="heading">Ingredients</div>
+                            <div class="content">
+                                <ul>${ingredients.split('\n').map(ingredient => `<li>${ingredient}</li>`).join('')}</ul>
+                            </div>
+                        </div>
+                        <div class="grid-item">
+                            <div class="heading">How to Make</div>
+                            <div class="content">
+                                <ol>${steps.split('\n').map(step => `<li>${step}</li>`).join('')}</ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(recipeModal);
+        }
+
+        // Existing login functionality
+        var modal = document.getElementById("loginModal");
+        var span = document.getElementsByClassName("close")[0];
+        var loginLink = document.getElementById("loginLink");
+
+        function checkLoginStatus() {
+            var isLoggedIn = localStorage.getItem('loggedIn');
+            if (isLoggedIn) {
+                loginLink.innerText = "Logout";
+                loginLink.onclick = function() {
+                    localStorage.removeItem('loggedIn');
+                    window.location.href = 'index.html';
+                };
+            }
+        }
+
+        function navigate(page) {
+            var isLoggedIn = localStorage.getItem('loggedIn');
+            if (isLoggedIn) {
+                window.location.href = page + ".html";
+            } else {
+                openLoginModal();
+            }
+        }
+
+        function openLoginModal() {
+            modal.style.display = "block";
+        }
+
+        function closeLoginModal() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        document.getElementById('loginForm').onsubmit = function(event) {
+            event.preventDefault();
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            if (username && password) {
+                localStorage.setItem('loggedIn', true);
+                modal.style.display = "none";
+                window.location.reload();
+            } else {
+                alert('Please enter valid credentials');
+            }
+        }
+
+        function openSignupForm() {
+            alert('Signup form will be implemented here.');
+        }
+
+        function forgotPassword() {
+            alert('Forgot Password functionality will be implemented here.');
+        }
+    </script>
+</body>
+</html>

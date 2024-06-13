@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="signup-container">
+        <h2>Create Account</h2>
+        <form id="signup-form">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Sign Up</button>
+        </form>
+        <div id="message"></div>
+    </div>
+    <script>
+        document.getElementById('signup-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            var username = document.getElementById('username').value;
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+
+            // Normally, you'd send the data to your server here
+            // For this example, we'll simulate a successful signup
+            console.log('Username:', username);
+            console.log('Email:', email);
+            console.log('Password:', password);
+
+            // Simulate a successful account creation
+            var success = true; // Replace with actual server response
+
+            if (success) {
+                window.location.href = 'index.html';
+            } else {
+                document.getElementById('message').innerText = 'Error creating account. Please try again.';
+            }
+        });
+    </script>
+</body>
+</html>

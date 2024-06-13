@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Recipe Website - Home</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #0f0f0f;
+            color: rgb(223, 192, 50);
+            padding: 15px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            
+        
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        main {
+            padding: 50px;
+            text-align: center;
+        }
+        .menu-row {
+            display:flex;
+            justify-content:center;
+            margin-bottom: 5px;
+            display:inline-flexbox;
+        }
+
+        .menu-item {
+            display: inline-block;
+            width: 40%;
+            margin: 10px;
+            vertical-align: top;
+            text-align:justify;
+        }
+
+        .menu-item img {
+            width: 40%;
+            height: 40%;
+        }
+
+        .menu-item button {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .menu-item button:hover {
+            background-color: #45a049;
+        }
+
+        footer {
+            background-color: #060606;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom:fixed
+            ;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body onload="checkLoginStatus()">
+    <header>
+        <h1>Flavors of the coastal breeze</h1>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="#" onclick="navigate('vegetarian')">Vegetarian</a></li>
+                <li><a href="#" onclick="navigate('non-vegetarian')">Non-Vegetarian</a></li>
+                <li><a href="#" onclick="navigate('beverages')">Beverages</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="#" id="loginLink" onclick="openLoginModal()">Login/Signup</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="menu">
+            <h2>Menu</h2>
+            <div class="menu-row">
+                <div class="menu-item">
+                    <h3>Vegetarian</h3>
+                    <img src="veg.jpg" alt="Vegetarian">
+                    <p>Discover a variety of nutritious and delicious vegetarian recipes that will satisfy your taste buds. From fresh salads to hearty vegetable mains, we have something for everyone!</p>
+                    <button onclick="navigate('vegetarian')">Go Inside</button>
+                </div>
+                <div class="menu-item">
+                    <h3>Non-Vegetarian</h3>
+                    <img src="nonveg.jpg" alt="Non-Vegetarian">
+                    <p>Indulge in mouthwatering non-vegetarian recipes that are sure to delight your senses. From succulent chicken dishes to flavorful seafood specialties, there's a world of culinary delights waiting for you!</p>
+                    <button onclick="navigate('non-vegetarian')">Go Inside</button>
+                </div>
+            </div>
+            <div class="menu-row">
+                <div class="menu-item">
+                    <h3>Beverages</h3>
+                    <img src="bev.jpg" alt="Beverages">
+                    <p>Quench your thirst with our refreshing beverage recipes. From smoothies and shakes to cocktails and mocktails, explore a wide range of drinks to complement your meals or enjoy on their own.</p>
+                    <button onclick="navigate('beverages')">Go Inside</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Food Recipe Website. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var modal = document.getElementById("loginModal");
+        var span = document.getElementsByClassName("close")[0];
+        var loginLink = document.getElementById("loginLink");
+
+        // Check login status on page load
+        function checkLoginStatus() {
+            var isLoggedIn = localStorage.getItem('loggedIn');
+            if (isLoggedIn) {
+                loginLink.innerText = "Logout";
+                loginLink.onclick = function() {
+                    localStorage.removeItem('loggedIn');
+                    window.location.href = 'index.html'; // Redirect to index.html on logout
+                };
+            }
+        }
+
+        // Navigate to different pages based on login status
+        function navigate(page) {
+            var isLoggedIn = localStorage.getItem('loggedIn');
+            if (isLoggedIn) {
+                window.location.href = page + ".html";
+            } else {
+                openLoginModal();
+            }
+        }
+
+        // Open login modal
+        function openLoginModal() {
+            modal.style.display = "block";
+        }
+
+        // Close login modal
+        function closeLoginModal() {
+            modal.style.display = "none";
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Handle login form submission
+        document.getElementById('loginForm').onsubmit = function(event) {
+            event.preventDefault();
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            if (username && password) {
+                localStorage.setItem('loggedIn', true);
+                modal.style.display = "none";
+                window.location.reload(); // Reload the page after login
+            } else {
+                alert('Please enter valid credentials');
+            }
+        }
+
+        // Open signup form (placeholder function)
+        function openSignupForm() {
+            alert('Signup form will be implemented here.');
+        }
+
+        // Forgot password (placeholder function)
+        function forgotPassword() {
+            alert('Forgot Password functionality will be implemented here.');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vegetarian Recipes</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+         body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f1f1f1;
+  padding: 20px;
+  margin: 0;
+}
+
+
+        header {
+            background-color: #0f0f0f;
+            color: rgb(223, 192, 50);
+            padding: 15px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            
+        
+        }
+.container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  margin-bottom: 20px;
+}
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 10px;
+            padding: 30px;
+        }
+
+        .grid-item {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .image-container img {
+            width: 90%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 315px;
+            border-radius: 5px;
+        }
+        .button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  
+  width: 50px; 
+    text-align: center;
+}
+
+.button:hover {
+  background-color: #3e8e41;
+}
+
+.add-new {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  display: flex;
+  width: fit-content;
+  float: right;
+}
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: px; 
+}
+
+
+.add-new:hover {
+  background-color: #3e8e41;
+}
+
+.plus-icon {
+  margin-left: 10px;
+  font-size: 16px;
+}
+.modify-button {
+    background-color: #f39c12;
+    color: white;
+    padding: 10px 0px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-right: 100px;
+    width: 120px; 
+    text-align: center;/* Adjust as needed */
+}
+
+
+        .modify-button:hover {
+            background-color: #e67e22;
+        }
+    
+        .add-new:hover,
+.modify-button:hover {
+    background-color: #e67e22;
+}
+
+        footer {
+            background-color: #060606;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            bottom: fixed;
+        }
+
+        .heading {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .content {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body onload="checkLoginStatus()">
+    <header>
+       <h2>Flavors of the coastal breeze</h2>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="#" onclick="navigate('vegetarian')">Vegetarian</a></li>
+                <li><a href="#" onclick="navigate('non-vegetarian')">Non-Vegetarian</a></li>
+                <li><a href="#" onclick="navigate('beverages')">Beverages</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="#" id="loginLink" onclick="openLoginModal()">Login/Signup</a></li>
+            </ul>
+        </nav>
+    </header>
+<body>
+   
+   
+
+    <main>
+      
+        <div class="grid-container">
+            <div class="grid-item image-container">
+                <div class="heading">Image</div>
+                <img src="https://via.placeholder.com/300" alt="Recipe Image">
+            </div>
+            <div class="grid-item video-container">
+                <div class="heading">YouTube Link</div>
+                <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="grid-item">
+                <div class="heading">Ingredients</div>
+                <div class="content">
+                    <ul>
+                        <li>1 cup of flour</li>
+                        <li>2 tbsp of sugar</li>
+                        <li>1 tsp of salt</li>
+                        <li>1/2 cup of water</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="grid-item">
+                <div class="heading">How to Make</div>
+                <div class="content">
+                    <ol>
+                        <li>Mix the flour, sugar, and salt in a bowl.</li>
+                        <li>Add water and stir until you get a smooth batter.</li>
+                        <li>Pour the batter into a pan and cook over medium heat.</li>
+                        <li>Cook until golden brown and serve hot.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Food Recipe Website. All rights reserved.</p>
+    </footer>
+    <script>
+        var modal = document.getElementById("loginModal");
+        var span = document.getElementsByClassName("close")[0];
+        var loginLink = document.getElementById("loginLink");
+
+        // Check login status on page load
+        function checkLoginStatus() {
+            var isLoggedIn = localStorage.getItem('loggedIn');
+            if (isLoggedIn) {
+                loginLink.innerText = "Logout";
+                loginLink.onclick = function() {
+                    localStorage.removeItem('loggedIn');
+                    window.location.href = 'index.html'; // Redirect to index.html on logout
+                };
+            }
+        }
+
+        // Navigate to different pages based on login status
+        function navigate(page) {
+            var isLoggedIn = localStorage.getItem('loggedIn');
+            if (isLoggedIn) {
+                window.location.href = page + ".html";
+            } else {
+                openLoginModal();
+            }
+        }
+
+        // Open login modal
+        function openLoginModal() {
+            modal.style.display = "block";
+        }
+
+        // Close login modal
+        function closeLoginModal() {
+            modal.style.display = "none";
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Handle login form submission
+        document.getElementById('loginForm').onsubmit = function(event) {
+            event.preventDefault();
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            if (username && password) {
+                localStorage.setItem('loggedIn', true);
+                modal.style.display = "none";
+                window.location.reload(); // Reload the page after login
+            } else {
+                alert('Please enter valid credentials');
+            }
+        }
+
+        // Open signup form (placeholder function)
+        function openSignupForm() {
+            alert('Signup form will be implemented here.');
+        }
+
+        // Forgot password (placeholder function)
+        function forgotPassword() {
+            alert('Forgot Password functionality will be implemented here.');
+        }
+    </script>
+</body>
+</html>

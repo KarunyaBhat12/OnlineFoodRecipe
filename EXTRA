@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gujarat Recipes</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f1f1f1;
+            padding: 20px;
+            margin: 0;
+        }
+
+        header {
+            background-color: #0f0f0f;
+            color: rgb(223, 192, 50);
+            padding: 15px;
+            text-align: center;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+        }
+
+        .form-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .form-group {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .form-group img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            height: 150px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Gujarat Recipes</h1>
+    </header>
+    <main>
+        <div class="container">
+            <h2>Add or Modify Recipe</h2>
+            <form id="recipeForm">
+                <div class="form-group">
+                    <label for="recipeName">Recipe Name:</label>
+                    <input type="text" id="recipeName" name="recipeName" required>
+                </div>
+                <div class="form-container">
+                    <div class="form-group">
+                        <label for="image">Add Image:</label>
+                        <input type="file" id="image" name="image" accept="image/*">
+                        <label for="ingredients">Ingredients:</label>
+                        <textarea id="ingredients" name="ingredients" placeholder="List ingredients here..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="youtubeLink">YouTube Link:</label>
+                        <input type="url" id="youtubeLink" name="youtubeLink" placeholder="Enter YouTube link...">
+                        <label for="instructions">How to Make:</label>
+                        <textarea id="instructions" name="instructions" placeholder="Describe the steps here..." required></textarea>
+                    </div>
+                </div>
+                <div class="buttons">
+                    <button type="submit" class="button">Add New</button>
+                    <button type="button" class="button" onclick="modifyRecipe()">Modify</button>
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+</html>
+
+<script>
+    function modifyRecipe() {
+        // Add your modify recipe logic here
+        alert("Modify recipe functionality to be implemented.");
+    }
+</script>

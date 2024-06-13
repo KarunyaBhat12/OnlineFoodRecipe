@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flavors of the coastal breeze</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body onload="checkLoginStatus()">
+    <header>
+        <h1>Flavors of the coastal breeze</h1>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="navigate('home')">Home</a></li>
+                <li><a href="#" onclick="navigate('vegetarian')">Vegetarian</a></li>
+                <li><a href="#" onclick="navigate('non-vegetarian')">Non-Vegetarian</a></li>
+                <li><a href="#" onclick="navigate('beverages')">Beverages</a></li>
+                <li><a href="#" onclick="navigate('feedback')">Feedback</a></li>
+                <li><a href="#" id="loginLink" onclick="openLoginModal()">Login/Signup</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="home">
+            <h2>Welcome to our Flavors of the coastal breeze</h2>
+            <div class="recipe-type">
+                <div class="content-box"></div>
+                <h3><u>Vegetarian Recipes</u></h3>
+                <div class="content">
+                    <div class="description">
+                        <p>Discover a variety of nutritious and delicious vegetarian recipes that will satisfy your taste buds. From fresh salads to hearty meals, explore the flavors of vegetarian cuisine.</p>
+                    </div>
+                    <div class="image">
+                        <img src="vegetarian.jpg" alt="Vegetarian Recipe">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="recipe-type">
+                <div class="content-box"></div>
+                <h3><u>Non-Vegetarian Recipes</u></h3>
+                <div class="content">
+                    <div class="description">
+                        <p>Enjoy a range of flavorful and satisfying non-vegetarian recipes. From succulent meats to savory seafood dishes, there's something for every meat lover.</p>
+                    </div>
+                    <div class="image">
+                        <img src="non-vegetarian.jpg" alt="Non-Vegetarian Recipe">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="recipe-type">
+                <div class="content-box"></div>
+                <h3><u>Beverages</u></h3>
+                <div class="content">
+                    <div class="description">
+                        <p>Quench your thirst with our collection of refreshing beverages. From smoothies to cocktails, find the perfect drink to complement your meal.</p>
+                    </div>
+                    <div class="image">
+                        <img src="beverages.jpg" alt="Beverage">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Flavors of the coastal breeze . All rights reserved.</p>
+    </footer>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLoginModal()">&times;</span>
+            <h2>Login / Sign Up</h2>
+            <form id="loginForm" action="#" method="post">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required><br><br>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required><br><br>
+                <input type="submit" value="Login">
+
+               
+               <br/> <a href="#" onclick="openSignupForm()">Create Account</a>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript for modal and login handling -->
+    <script>
+        var modal = document.getElementById("loginModal");
+        var span = document.getElementsByClassName("close")[0];
+        var loginLink = document.getElementById("loginLink");
+
+        // Check login status on page load
+        function checkLoginStatus() {
+            var isLoggedIn = localStorage.getItem('loggedIn');
+            if (isLoggedIn) {
+                loginLink.innerText = "Logout";
+                loginLink.onclick = function() {
+                    localStorage.removeItem('loggedIn');
+                    window.location.reload();
+                };
+            }
+        }
+
+        // Navigate to different pages based on login status
+        function navigate(page) {
+            var isLoggedIn = localStorage.getItem('loggedIn');
+            if (isLoggedIn) {
+                window.location.href = page + ".html";
+            } else {
+                openLoginModal();
+            }
+        }
+
+        // Open login modal
+        function openLoginModal() {
+            modal.style.display = "block";
+        }
+
+        // Close login modal
+        function closeLoginModal() {
+            modal.style.display = "none";
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Handle login form submission
+        document.getElementById('loginForm').onsubmit = function(event) {
+            event.preventDefault();
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            if (username && password) {
+                localStorage.setItem('loggedIn', true);
+                modal.style.display = "none";
+                window.location.reload(); // Reload the page after login
+            } else {
+                alert('Please enter valid credentials');
+            }
+        }
+
+        // Open signup form (placeholder function)
+        
+            
+        function openSignupForm() {
+            window.location.href = 'signup.html';
+        }
+        
+
+        // Forgot password (placeholder function)
+        function forgotPassword() {
+            // Redirect to login/sign-up page
+        }
+        
+    </script>
+</body>
+</html>
